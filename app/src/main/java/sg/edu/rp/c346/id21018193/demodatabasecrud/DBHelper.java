@@ -2,9 +2,12 @@ package sg.edu.rp.c346.id21018193.demodatabasecrud;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "simplenotes.db";
@@ -41,5 +44,26 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    public ArrayList<Note> getAllNotes() {
+        ArrayList<Note> notes = new ArrayList<Note>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] columns= {COLUMN_ID, COLUMN_NOTE_CONTENT};
+        Cursor cursor = db.query(TABLE_NOTE, columns, null, null,
+                null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String noteContent = cursor.getString(1);
+                Note note = new Note(id, noteContent);
+                notes.add(note);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return notes;
+    }
 
 }

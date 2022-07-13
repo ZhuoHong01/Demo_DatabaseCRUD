@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     al.addAll(dbh.getAllNotes(filterText));
                 }
-
                 aa.notifyDataSetChanged();
             }
         });

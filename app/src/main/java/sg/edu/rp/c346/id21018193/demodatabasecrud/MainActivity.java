@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent i = new Intent(MainActivity.this,
                         EditActivity.class);
-                i.putExtra("data", (Parcelable) target);
+                i.putExtra("data", String.valueOf(target));
                 startActivity(i);
 
             }

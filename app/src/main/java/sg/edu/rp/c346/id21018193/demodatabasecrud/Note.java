@@ -20,6 +20,9 @@ public class Note {
     public String toString() {
         return id + "\n" + noteContent;
     }
+
+    public void setNoteContent(String toString) {
+    }
 }
 
 

@@ -2,7 +2,11 @@ package sg.edu.rp.c346.id21018193.demodatabasecrud;
 
 import androidx.annotation.NonNull;
 
-public class Note {
+import java.io.Serializable;
+
+public class Note implements Serializable {
+
+
     private int id;
     private String noteContent;
 

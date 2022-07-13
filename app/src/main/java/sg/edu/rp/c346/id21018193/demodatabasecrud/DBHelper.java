@@ -100,6 +100,8 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
+
+
     public ArrayList<Note> getAllNotes(String keyword) {
         ArrayList<Note> notes = new ArrayList<Note>();
 

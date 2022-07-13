@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +35,18 @@ public class MainActivity extends AppCompatActivity {
         aa = new ArrayAdapter<Note>(this,
                 android.R.layout.simple_list_item_1, al);
         lv.setAdapter(aa);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long identity) {
+                Note data = al.get(position);
+                Intent i = new Intent(MainActivity.this,
+                        EditActivity.class);
+                i.putExtra("data", (Parcelable) data);
+                startActivity(i);
+
+            }
+        });
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +82,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DBHelper dbh = new DBHelper(MainActivity.this);
                 al.clear();
-                al.addAll(dbh.getAllNotes());
+                String filterText = etContent.getText().toString().trim();
+                if(filterText.length() == 0) {
+                    al.addAll(dbh.getAllNotes());
+                }
+                else{
+                    al.addAll(dbh.getAllNotes(filterText));
+                }
+
                 aa.notifyDataSetChanged();
             }
         });

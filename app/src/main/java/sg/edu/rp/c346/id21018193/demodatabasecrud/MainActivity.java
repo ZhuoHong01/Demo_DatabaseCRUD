@@ -2,7 +2,9 @@ package sg.edu.rp.c346.id21018193.demodatabasecrud;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,6 +34,19 @@ public class MainActivity extends AppCompatActivity {
         aa = new ArrayAdapter<Note>(this,
                 android.R.layout.simple_list_item_1, al);
         lv.setAdapter(aa);
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Note target = al.get(0);
+
+                Intent i = new Intent(MainActivity.this,
+                        EditActivity.class);
+                i.putExtra("data", (Parcelable) target);
+                startActivity(i);
+
+            }
+        });
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override

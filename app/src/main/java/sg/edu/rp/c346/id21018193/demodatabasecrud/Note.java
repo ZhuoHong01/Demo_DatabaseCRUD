@@ -25,6 +25,8 @@ public class Note implements Serializable {
         return id + "\n" + noteContent;
     }
 
+    public void setNoteContent(String toString) {
+    }
 }
 
 

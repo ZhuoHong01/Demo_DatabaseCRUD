@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 Note data = al.get(position);
                 Intent i = new Intent(MainActivity.this,
                         EditActivity.class);
-                i.putExtra("data", (Parcelable) data);
+                i.putExtra("data",  data);
                 startActivity(i);
 
             }
